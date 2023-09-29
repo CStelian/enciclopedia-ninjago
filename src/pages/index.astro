@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { url } from '../data/seo.js'
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+
+<Layout
+	title="Acasă"
+	description="Bun venit pe site-ul oficial al Enciclopediei Ninjago. Site-ul este în construcție, dar se va lansa în curând."
+	seoImage="/images/seo/acasa.jpg"
+	type="website"
+	url={url}
+>
+	<main>
+		<div class="logo-container">
+			<Image src={logo} alt="Enciclopedia Ninjago" />
+		</div>
+		<div class="announcement-container">
+			<h1>
+				Bun venit pe site-ul oficial al Enciclopediei Ninjago.
+			</h1>
+			<h2>
+				Serviciul încă nu este disponibil, așa că vă rugăm să fiți cu ochii pe noi pentru noi actualizări.
+			</h2>
+		</div>
+	</main>
+	<footer>
+		&copy; 2023 Enciclopedia Ninjago. Toate drepturile rezervate.
+	</footer>
+</Layout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100dvh;
+		height: 100vh;
+		color: #fff;
+	}
+
+	.logo-container {
+		width: 100%;
+		max-width: 500px;
+		position: relative;
+	}
+
+	.logo-container img {
+		width: 100%;
+		height: auto;
+	}
+
+	.announcement-container {
+		width: 100%;
+		max-width: 500px;
+		margin-top: 2rem;
+	}
+
+	.announcement-container h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		text-align: center;
+	}
+
+	.announcement-container h2 {
+		font-size: 1.5rem;
+		font-weight: 400;
+		text-align: center;
+	}
+
+	footer {
+		margin-top: 2rem;
+		font-size: 0.8rem;
+		color: #fff;
+		text-align: center;
+	}
+
+	@media (max-width: 500px) {
+		.announcement-container h1 {
+			font-size: 1.5rem;
+		}
+
+		.announcement-container h2 {
+			font-size: 1.2rem;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.announcement-container h1 {
+			font-size: 1.2rem;
+		}
+
+		.announcement-container h2 {
+			font-size: 1rem;
+		}
+	}
+</style>
