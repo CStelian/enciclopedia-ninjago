@@ -1,0 +1,147 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { url } from '@data/seo.js'
+import { Image } from 'astro:assets'
+import ascensiuneaDragonilor from '@assets/seriale/ascensiunea-dragonilor.jpg'
+import ascensiuneaDragonilorLogo from '@assets/seriale/logos/ascensiunea-dragonilor.png'
+---
+
+<Layout
+	title="Seriale Ninjago"
+	description="Serialele din universul Ninjago."
+	seoImage="/images/seo/acasa.jpg"
+	type="website"
+	url=`${url}seriale/`
+>
+    <main>
+        <header>
+            <h1>Seriale</h1>
+        </header>
+        <section>
+            <div class="section-title">
+                <h2>În curând</h2>
+                <p>Vedeți ce apare în curând pe platformă.</p>
+            </div>
+            <div class="section-content">
+                <a href="/seriale/ascensiunea-dragonilor/" class="showLink">
+                    <Image src={ascensiuneaDragonilor} alt="Ninjago: Ascensiunea Dragonilor" />
+                    <div class="overlay"/>
+                    <div class="showInfo">
+                        <div>
+                            <Image src={ascensiuneaDragonilorLogo} alt="Ninjago: Ascensiunea Dragonilor" />
+                        </div>
+                        <div>
+                            <p>2023</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style lang="scss">
+
+    main {
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+    }
+
+    section {
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: 400;
+                margin-left: 1rem;
+                color: #666;
+            }
+        }
+
+    }
+
+    .section-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+
+        .showLink {
+            position: relative;
+            width: 550px;
+            height: 309px;
+            border-radius: 3.75rem;
+            color: #fff;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 5px;
+            }
+
+            .showInfo {
+                position: absolute;
+                bottom: 0;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                img {
+                    width: 250px;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        main {
+            padding: 1rem;
+        }
+
+        .section-content {
+            .showLink {
+                width: 100%;
+
+                .showInfo {
+                    img {
+                        width: 150px;
+                    }
+                }
+            }
+        }
+    }
+
+</style>

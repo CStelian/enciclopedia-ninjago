@@ -1,0 +1,245 @@
+---
+
+import Layout from '@layouts/Layout.astro'
+import { url } from '@data/seo.js'
+import { ascensiuneaDragonilor } from '@data/series'
+import { Image } from 'astro:assets'
+import ascensiuneaDragonilorBg from '@assets/seriale/ascensiunea-dragonilor.jpg'
+import ascensiuneaDragonilorLogo from '@assets/seriale/logos/ascensiunea-dragonilor.png'
+
+
+
+---
+
+<Layout
+	title={ascensiuneaDragonilor.title}
+	description={ascensiuneaDragonilor.desc}
+	seoImage={ascensiuneaDragonilor.seoImage}
+	type="website"
+	url=`${url}seriale/`
+>
+
+    <header class="showInfo">
+        <Image src={ascensiuneaDragonilorBg} alt={ascensiuneaDragonilor.title} class="showBg" />
+
+        <div class="overlay"/>
+
+        <div class="showDetails">
+
+            <div class="showLogo">
+                <Image src={ascensiuneaDragonilorLogo} alt={ascensiuneaDragonilor.title} />
+            </div>
+
+            <div class="comingSoon">
+                <p>În curând va apărea sezonul 2.</p>
+            </div>
+
+            <div class="showInfo">
+                <p>{ascensiuneaDragonilor.desc}</p>
+                <div class="metadata">
+                    <span class="category">
+                        <p>{ascensiuneaDragonilor.releaseDate}</p>
+                    </span>
+                    <span class="category ageRating">
+                        <p>{ascensiuneaDragonilor.rating}</p>
+                    </span>
+                    <span class="category">
+                        <p>{ascensiuneaDragonilor.genres[0]}</p>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <form>
+            <select name="Selectează sezonul">
+                <option value="1" disabled>Sezonul 1</option>
+                <option value="2" selected>Sezonul 2</option>
+            </select>
+        </form>
+
+        <div class="content">
+            <section id="1" class="tab hidden-tab">
+                <h2>Sezonul 1</h2>
+                <p>Sezonul 1 al serialului Ascensiunea Dragonilor</p>
+            </section>
+            <section id="2" class="tab">
+                <h2>Sezonul 2</h2>
+                <p>Sezonul 2 al serialului Ascensiunea Dragonilor</p>
+            </section>
+        </div>
+    </main>
+
+</Layout>
+
+<style lang="scss">
+
+    .showInfo {
+        position: relative;
+        height: 100vh;
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .showBg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showDetails {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            padding-top: 1rem;
+
+            .showLogo {
+                width: 290px;
+                height: 120px;
+                margin-bottom: 1rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .comingSoon {
+                background: #333;
+                padding: 0.5rem 1rem;
+                border-radius: 0.25rem;
+                margin-bottom: 1rem;
+
+                p {
+                    color: #fff;
+                    font-size: 1rem;
+                }
+            }
+
+            .showInfo {
+                text-align: center;
+                max-width: 500px;
+                margin: 0 auto;
+                height: min-content;
+
+                p {
+                    color: #fff;
+                    font-size: 1rem;
+                    margin-bottom: 1rem;
+                }
+
+                .metadata {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: center;
+
+                    .category {
+                        background: #333;
+                        padding: 0.25rem 0.5rem;
+                        border-radius: 0.25rem;
+                        display: grid;
+                        place-items: center;
+
+                        p {
+                            color: #fff;
+                            font-size: 0.75rem;
+                            margin: 0;
+                        }
+
+                        &.ageRating {
+                            background: #f00;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
+    @media screen and (max-width: 768px) {
+        .showInfo {
+            max-width: 400px;
+        }
+    }
+
+    main {
+        padding: 1rem;
+        display: none;
+    
+    
+        form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+    
+            select {
+                padding: 0.5rem 1rem;
+                border: 1px solid #ccc;
+                border-radius: 0.25rem;
+                font-size: 1rem;
+            }
+        }
+
+    }
+
+    .tab {
+        margin-top: 2rem;
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+    }
+
+    .hidden-tab {
+        display: none;
+    }
+
+</style>
+
+<script>
+
+    const tabs = document.querySelectorAll('.tab');
+    const select = document.querySelector('select');
+
+    select?.addEventListener('change', (e) => {
+
+        tabs.forEach(tab => {
+            tab.classList.add('hidden-tab');
+        });
+
+        const selectedTab = document.getElementById((e.target as HTMLSelectElement)?.value);
+
+        if(!selectedTab) return;
+
+        selectedTab.classList.remove('hidden-tab');
+    });
+
+</script>

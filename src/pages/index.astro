@@ -1,99 +1,101 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import { url } from '../data/seo.js'
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.png';
+import Layout from '@layouts/Layout.astro'
+import { url } from '@data/seo.js'
+import { Image } from 'astro:assets'
+import hero from '@assets/hero.jpg'
 ---
 
 <Layout
 	title="Acasă"
-	description="Bun venit pe site-ul oficial al Enciclopediei Ninjago. Site-ul este în construcție, dar se va lansa în curând."
+	description="Bun venit pe site-ul oficial al Enciclopediei Ninjago. Aici veți găsi toate informațiile despre Ninjago. Plus episoade gratuite."
 	seoImage="/images/seo/acasa.jpg"
 	type="website"
 	url={url}
 >
-	<main>
-		<div class="logo-container">
-			<Image src={logo} alt="Enciclopedia Ninjago" />
+	<header>
+		<Image src={hero} alt="Ninjago" class="hero-image" />
+		<div class="hero-overlay"></div>
+		<div class="hero-text">
+			<h1>Enciclopedia Ninjago</h1>
+			<p>Site-ul oficial al Enciclopediei Ninjago</p>
 		</div>
-		<div class="announcement-container">
-			<h1>
-				Bun venit pe site-ul oficial al Enciclopediei Ninjago.
-			</h1>
-			<h2>
-				Serviciul încă nu este disponibil, așa că vă rugăm să fiți cu ochii pe noi pentru noi actualizări.
-			</h2>
-		</div>
-	</main>
-	<footer>
-		&copy; 2023 Enciclopedia Ninjago. Toate drepturile rezervate.
-	</footer>
+	</header>
 </Layout>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		height: 100dvh;
-		height: 100vh;
-		color: #fff;
-	}
-
-	.logo-container {
-		width: 100%;
-		max-width: 500px;
+	header {
+		--_navbar-height: 0px;
 		position: relative;
+		height: calc(100dvh - var(--_navbar-height));
+		height: calc(100vh - var(--_navbar-height));
 	}
 
-	.logo-container img {
+	.hero-image {
 		width: 100%;
-		height: auto;
+		height: 100%;
+		object-fit: cover;
 	}
 
-	.announcement-container {
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
-		max-width: 500px;
-		margin-top: 2rem;
+		height: 100%;
+		background-image: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0.5)
+		);
 	}
 
-	.announcement-container h1 {
+	.hero-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+
+	.hero-text h1 {
+		font-size: 4rem;
+		margin-bottom: 2rem;
+	}
+
+	.hero-text p {
 		font-size: 2rem;
-		font-weight: 700;
+	}
+
+	main {
+		padding: 2rem;
+	}
+
+	main h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+		font-weight: 500;
 		text-align: center;
 	}
 
-	.announcement-container h2 {
-		font-size: 1.5rem;
-		font-weight: 400;
-		text-align: center;
-	}
+	@media screen and (max-width: 768px) {
 
-	footer {
-		margin-top: 2rem;
-		font-size: 0.8rem;
-		color: #fff;
-		text-align: center;
-	}
+		.hero-text {
+			top: 40%;
+		}
 
-	@media (max-width: 500px) {
-		.announcement-container h1 {
+		.hero-text h1 {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.hero-text p {
 			font-size: 1.5rem;
-		}
-
-		.announcement-container h2 {
-			font-size: 1.2rem;
-		}
-	}
-
-	@media (max-width: 400px) {
-		.announcement-container h1 {
-			font-size: 1.2rem;
-		}
-
-		.announcement-container h2 {
-			font-size: 1rem;
 		}
 	}
 </style>
+<script is:inline>
+	const navbar = document.querySelector('nav');
+	const header = document.querySelector('header');
+
+	header.style.setProperty('--_navbar-height', navbar.offsetHeight + 'px');
+</script>

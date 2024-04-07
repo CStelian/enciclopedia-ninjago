@@ -1,0 +1,47 @@
+---
+import { defaultTitle } from '../data/seo'
+const currentYear = new Date().getFullYear()
+
+---
+
+<footer>
+    <div class="links"></div>
+    <div class="copy">
+        <p>&copy; { currentYear }&nbsp;{ defaultTitle }. Toate drepturile rezervate.</p>
+        <p>LEGO, sigla LEGO, Minifigurina, NINJAGO, sunt mărci comerciale și drepturi de autor ale LEGO Group. ©2023 The LEGO Group. Toate drepturile rezervate.</p>
+    </div>
+</footer>
+
+<style lang="scss">
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    text-align: center;
+
+    .copy {
+        margin-top: 2rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    footer {
+        padding: 4rem 0;
+
+        .copy {
+            margin-top: 4rem;
+            font-size: 1rem;
+            padding: 2rem;
+        }
+    }
+}
+
+</style>
