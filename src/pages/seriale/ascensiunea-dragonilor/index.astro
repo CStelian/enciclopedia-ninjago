@@ -3,10 +3,9 @@
 import Layout from '@layouts/ProductionLayout.astro'
 import { url } from '@data/seo.js'
 import { ascensiuneaDragonilor } from '@data/series'
-import { Image } from 'astro:assets'
 import ascensiuneaDragonilorLogo from '@assets/seriale/logos/ascensiunea-dragonilor.png'
-
-
+import EpisodeButton from '@components/ui/EpisodeButton.astro'
+import s2e1 from '@assets/episoade/ascensiunea-dragonilor/s2/e1.png'
 
 ---
 
@@ -23,6 +22,97 @@ import ascensiuneaDragonilorLogo from '@assets/seriale/logos/ascensiunea-dragoni
     productionBg={ascensiuneaDragonilor.seoImage}
     isMovie={false}
     releaseDate={ascensiuneaDragonilor.releaseDate}
-    comingSoon={true}
+    comingSoon={false}
     comingSoonMessage="Apare în curând."
-></Layout>
+>
+    <div class="seasons-list">
+        <ul class="listbox">
+            <li class="listbox-item listbox-active-item" data-id="sezonul-2">
+                Sezonul 2
+            </li>
+        </ul>
+    </div>
+
+    <div id="sezonul-2" class="season-content active-season-content">
+        
+        <div class="episode-list">
+            <EpisodeButton
+                title="1. Luna sângerie"
+                image={s2e1}
+                episodeId="57f0a312-87da-4332-8a09-0d1405830010"
+                episodeDuration="22m"
+            />
+        </div>
+
+    </div>
+
+</Layout>
+
+<style>
+
+    .seasons-list {
+        margin-top: -2rem;
+    }
+
+    .listbox {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .listbox-item {
+        color: #fff;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.3s;
+    }
+
+    .listbox-item:hover {
+        opacity: .8;
+    }
+
+    .listbox-active-item {
+        opacity: 1;
+    }
+    .season-content {
+        display: none;
+    }
+
+    .active-season-content {
+        display: block;
+    }
+
+    .episode-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+</style>
+
+<script>
+
+    const tabs = document.querySelectorAll('.listbox-item')
+    const tabContents = document.querySelectorAll('.season-content')
+
+    if(!tabs || !tabContents) {
+        throw new Error('Tabs or contents not found')
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('listbox-active-item'))
+            tab.classList.add('listbox-active-item')
+
+            const tabId = tab.getAttribute('data-id')
+
+            tabContents.forEach(content => {
+                content.classList.remove('active-season-content')
+                if(content.id === tabId) {
+                    content.classList.add('active-season-content')
+                }
+            })
+        })
+    })
+</script>

@@ -1,0 +1,74 @@
+---
+
+
+import { Image } from 'astro:assets'
+
+interface EpisodeButton {
+  title: string
+  image: ImageMetadata
+  episodeId: string
+  episodeDuration: string
+}
+
+const { title, image, episodeId, episodeDuration } = Astro.props
+
+---
+
+<a href=`/video/${episodeId}` class="episode-button" id="episode-button">
+
+    <Image src={image} alt={title} class="episode-image" />
+    
+    <div class="episode-metadata">
+        <span class="episode-title">{title}</span>
+        <span class="episode-data">{episodeDuration}</span>
+    </div>
+
+</a>
+
+<style>
+
+    .episode-button {
+        background: none;
+        border: none;
+        color: #fff;
+        width: 350px;
+        text-align: left;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 1.75rem;
+        margin-bottom: 1rem;
+        transition: all .3s;
+    }
+
+    .episode-button:hover img {
+        transform: scale(1.05);
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
+
+    .episode-metadata {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+    }
+
+    .episode-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    .episode-data {
+        opacity: .5;
+    }
+
+</style>
+
+
+
+
+
