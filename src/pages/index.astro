@@ -2,7 +2,7 @@
 import Layout from '@layouts/Layout.astro'
 import { url } from '@data/seo.js'
 import { Image } from 'astro:assets'
-import hero from '@assets/hero.jpg'
+import logo from '@assets/logo.png'
 ---
 
 <Layout
@@ -13,43 +13,43 @@ import hero from '@assets/hero.jpg'
 	url={url}
 >
 	<header>
-		<Image src={hero} alt="Ninjago" class="hero-image" />
-		<div class="hero-overlay"></div>
-		<div class="hero-text">
-			<h1>Enciclopedia Ninjago</h1>
-			<p>Site-ul oficial al Enciclopediei Ninjago</p>
+		<div class="overlay"/>
+		<div class="content">
+			<div class="logo-conntainer">
+				<div class="logo-overlay"/>
+				<Image src={logo} alt="Enciclopedia Ninjago" class="logo" />
+			</div>
+			<div class="desc">
+				<p>
+					Bun venit pe site-ul oficial al Enciclopediei Ninjago. Aici veți găsi toate informațiile despre Ninjago. Plus episoade gratuite.
+				</p>
+			</div>
 		</div>
 	</header>
 </Layout>
 
 <style>
+
 	header {
-		--_navbar-height: 0px;
+		background-image: url('/images/hero.jpg');
+		background-size: cover;
+		background-position: center;
+		height: 100vh;
 		position: relative;
-		height: calc(100dvh - var(--_navbar-height));
-		height: calc(100vh - var(--_navbar-height));
 	}
 
-	.hero-image {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.hero-overlay {
+	.overlay {
 		position: absolute;
 		top: 0;
 		left: 0;
+		bottom: 0;
 		width: 100%;
 		height: 100%;
-		background-image: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0.5),
-			rgba(0, 0, 0, 0.5)
-		);
+		background: rgb(0,0,0);
+		background: linear-gradient(360deg, rgba(0,0,0,1) 25%, rgba(0,0,0,.5) 50%, rgba(0,212,255,0) 100%);
 	}
 
-	.hero-text {
+	.content {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -57,45 +57,54 @@ import hero from '@assets/hero.jpg'
 		text-align: center;
 	}
 
-	.hero-text h1 {
-		font-size: 4rem;
-		margin-bottom: 2rem;
+	.logo-conntainer {
+		position: relative;
 	}
 
-	.hero-text p {
-		font-size: 2rem;
+	.logo-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		background: none;
 	}
 
-	main {
-		padding: 2rem;
+	.logo {
+		width: 100%;
+		max-width: 550px;
+		height: auto;
+		margin: 0 auto;
+		display: block;
 	}
 
-	main h2 {
-		font-size: 2rem;
-		margin-bottom: 1rem;
-		font-weight: 500;
+	.desc {
 		text-align: center;
+		color: white;
+		font-size: 1.7rem;
+		margin-top: 20px;
 	}
 
-	@media screen and (max-width: 768px) {
+	.desc p {
+		margin: 0;
+	}
 
-		.hero-text {
-			top: 40%;
+	@media (max-width: 768px) {
+
+		.overlay {
+			background: rgb(0,0,0);
+			background: linear-gradient(360deg, rgba(0,0,0,1) 35%, rgba(0,0,0,.5) 75%, rgba(0,212,255,0) 100%);
+		
 		}
 
-		.hero-text h1 {
-			font-size: 2.5rem;
-			margin-bottom: 1rem;
+		.logo {
+			max-width: 400px;
 		}
-
-		.hero-text p {
+		.desc {
 			font-size: 1.5rem;
+			max-width: 90%;
 		}
 	}
+	
 </style>
-<script is:inline>
-	const navbar = document.querySelector('nav');
-	const header = document.querySelector('header');
-
-	header.style.setProperty('--_navbar-height', navbar.offsetHeight + 'px');
-</script>

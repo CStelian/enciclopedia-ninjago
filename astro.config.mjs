@@ -4,9 +4,6 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  image: {
-    domains: ['cdn.enciclopedianinjago.ro']
-  },
+  output: "hybrid",
   adapter: vercel()
 });

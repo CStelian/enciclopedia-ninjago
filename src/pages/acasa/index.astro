@@ -1,0 +1,207 @@
+---
+import Layout from '@layouts/ContentLayout.astro'
+import { url } from '@data/seo.js'
+import { Image } from 'astro:assets'
+import ascensiuneaDragonilor from '@assets/seriale/ascensiunea-dragonilor.jpg'
+import ascensiuneaDragonilorLogo from '@assets/seriale/logos/ascensiunea-dragonilor.png'
+---
+
+<Layout
+	title="Enciclopedia Ninjago - Vizionează filme și seriale din universul Ninjago"
+	description="Vizionează filme și seriale din universul Ninjago."
+	seoImage="/images/seo/acasa.jpg"
+	type="website"
+	url=`${url}acasa/`
+>
+    <main>
+        <header class="slider">
+            <div class="slider-item" data-index="1">
+                <a href="/seriale/ascensiunea-dragonilor/" style="background: url('/images/seo/ascensiunea-dragonilor.jpg'); background-size: cover; background-position: center;">
+                    <div class="link-content">
+                        <div class="logo-container">
+                            <div class="logo-overlay"/>
+                            <Image src={ascensiuneaDragonilorLogo} alt="Ninjago: Ascensiunea Dragonilor" />
+                        </div>
+                        <p>În curând pe platformă</p>
+                    </div>
+                </a>
+            </div>
+            <div class="items-count"/>
+    </main>
+</Layout>
+
+<style lang="scss">
+
+    main {
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    header {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .slider-item {
+        position: relative;
+        box-sizing: border-box;
+        width: 90%;
+        margin: 0 auto;
+        height: 400px;
+        border-radius: 1.25rem;
+        overflow: hidden;
+
+        a {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+
+            .link-content {
+                left: 0;
+                bottom: 10%;
+                padding: 1rem;
+                width: 50%;
+                height: 50%;
+                padding-bottom: 2.5rem;
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 2rem;
+
+                .logo-container {
+                    position: relative;
+
+                    .logo-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                img {
+                    width: 75%;
+                    height: auto;
+                }
+
+                p {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: #fff;
+                }
+
+            }
+
+        }
+
+        &:hover {
+            outline: 2px solid #fff;
+            outline-offset: 5px;
+        }
+    }
+
+    section {
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: 400;
+                margin-left: 1rem;
+                color: #666;
+            }
+        }
+
+    }
+
+    .section-content {
+        display: flex;
+        overflow: auto;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+
+    @media screen and (max-width: 768px) {
+        main {
+            padding: 1rem;
+        }
+
+        header {
+            .slider-item {
+                height: 200px;
+            }
+        }
+
+        .link-content {
+            padding-bottom: 0rem;
+        }
+
+
+        .section-title {
+            align-items: flex-start;
+            flex-direction: column;
+
+            h2 {
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .section-content {
+
+            .showLink {
+                width: 100%;
+
+                .showInfo {
+                    img {
+                        width: 150px;
+                    }
+                }
+            }
+        }
+    }
+
+</style>
+
+<script>
+
+    const nav = document.querySelector('nav')
+    const header = document.querySelector('header')
+
+    if(!nav) {
+        throw new Error('Nav not found');
+    }
+
+    const navHeight = nav.offsetHeight;
+
+    if(!header) {
+        throw new Error('Header not found');
+    }
+
+    header.style.paddingTop = navHeight + 'px';
+   
+
+</script>
